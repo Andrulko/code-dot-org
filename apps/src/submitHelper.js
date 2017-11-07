@@ -45,6 +45,9 @@ export function initializeSubmitHelper(params) {
  * @param {string} response.redirect - URL to go to.
  */
 export function onSubmitComplete(response) {
+  if (window.appOptions.nextLevelUrl !== response.redirect) {
+    throw new Error('url does not match');
+  }
   window.location.href = response.redirect;
 }
 

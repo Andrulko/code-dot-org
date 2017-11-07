@@ -221,6 +221,9 @@ export function processResults(onComplete, beforeHook) {
               showDialog("success");
             }
           } else {
+            if (window.appOptions.nextLevelUrl !== lastServerResponse.nextRedirect) {
+              throw new Error('url does not match');
+            }
             window.location.href = lastServerResponse.nextRedirect;
           }
         }

@@ -272,6 +272,9 @@ reporting.sendReport = function (report) {
           var fallback = getFallbackResponse(report) || {};
           response.redirect = fallback.redirect;
         }
+        if (appOptions.nextLevelUrl !== response.redirect) {
+          throw new Error('url does not match');
+        }
         reportComplete(report, response);
       },
       error: function (xhr, textStatus, thrownError) {

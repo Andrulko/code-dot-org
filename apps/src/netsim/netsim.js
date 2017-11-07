@@ -1316,6 +1316,9 @@ NetSim.prototype.completeLevelAndContinue = function () {
       // Re-enable submit button, in case there's nowhere to go.
       $('.submitButton').attr('disabled', false);
 
+      if (window.appOptions.nextLevelUrl !== serverResponse.redirect) {
+        throw new Error('url does not match');
+      }
       // If there's somewhere to go, disconnect and go!
       if (serverResponse.redirect) {
         if (this.isConnectedToRemote()) {

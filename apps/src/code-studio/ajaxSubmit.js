@@ -10,6 +10,9 @@ module.exports = function ajaxSubmit(form_selector) {
     $(form_selector).on('ajax:complete', function (e, data) {
       if (parseInt(data.status, 10) === 200) {
         localStorage.removeItem('markdown_' + window.location.pathname.split('/').reverse()[1]);
+        if (window.appOptions.nextLevelUrl !== JSON.parse(data.responseText).redirect) {
+          throw new Error('url does not match');
+        }
         window.location.href = JSON.parse(data.responseText).redirect;
       }
     });

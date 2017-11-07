@@ -126,6 +126,9 @@ var LegacyDialog = module.exports = function (options) {
           options.onHidden();
         }
         if (options.redirect) {
+          if (window.appOptions.nextLevelUrl !== options.redirect) {
+            throw new Error('url does not match');
+          }
           window.location.href = options.redirect;
         }
         $(this).remove();
